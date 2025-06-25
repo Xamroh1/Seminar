@@ -107,13 +107,13 @@ for a in range(A):
     for t in range(T):
 
         #Lösungsdauer startzeit
-        starttime = time.time()
+        starttime = time.perf_counter_ns()
 
         #Bewertung der tour tl aus der Menge aller Touren in Instanz a aus A
         d = Tourbewertung_inkl_laden(a, K, t, max_b, Distanzmatrix_Kunden_Ladestation)
 
         #Solvetime
-        solvetime = time.time() - starttime
+        solvetime = time.perf_counter_ns() - starttime
 
         #Tourergebnis formatieren
         result = [a,t,K,float(d),round(solvetime,8)]

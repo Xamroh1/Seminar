@@ -19,14 +19,14 @@ def eukldist(p1,p2):
 
 def instance_gen(I,L):
 
-    Depot = [0,0]
+    Depot = [0,0] #festes Depot
 
     Kunden = []
     Ladestationen = []
 
     Batteriekapazität = 0
 
-    #Kunden und Ladesäulenkoordianten zwischen -100 und 100
+    #Kunden und Ladesäulenkoordianten zwischen -100 und 100 append an Listen
     for i in range(I):
         Kunden.append([
             random.randint(-100,100),
@@ -44,10 +44,10 @@ def instance_gen(I,L):
     #Kundenmatrix
     Distanzmatrix_Kunden = []
 
-    for k1 in Kunden:
-        zeile = []
+    for k1 in Kunden: #erster Kunde V
+        zeile = [] #zeile der matrix leer vorbereiten
         
-        for k2 in Kunden:
+        for k2 in Kunden: #iteration über alle Kunden, dann k1 +1
             distanz = eukldist(k1,k2)
 
             #Batteriecheck
@@ -89,8 +89,8 @@ def instance_gen(I,L):
 
 def instance_safe(a, Depot, Batterie, Kunden_Koord, Ladestationen_Koord, Kundenmatrix, Depotdistanzen, KundenLadenMatrix):
     
-    pfad = os.path.join("Instances")
-    os.makedirs(pfad, exist_ok=True)
+    pfad = os.path.join("Instances") #path Join aufgrund von Problmen mit String-Pfaden
+    os.makedirs(pfad, exist_ok=True) #Ordner erstllen wenn nicht da
     
     dateiname = "Instance_A{}.json".format(a)
     dateipfad = os.path.join(pfad, dateiname)

@@ -62,19 +62,19 @@ def instance_gen(I,L):
     #Depotmatrix
     Distanzen_Depot = []
 
-    for k in Kunden:
-        distanz = eukldist(Depot,k)
+    for k1 in Kunden:
+        distanz = eukldist(Depot,k1)
 
         Distanzen_Depot.append(distanz)
 
     #KundenLadeMatrix
     Distanzmatrix_Kunden_Laden = []
 
-    for k in Kunden:
+    for k1 in Kunden:
         zeile = []
 
         for l in Ladestationen:
-            distanz = eukldist(k,l)
+            distanz = eukldist(k1,l)
 
             #Batteriecheck
             if distanz > Batteriekapazität:

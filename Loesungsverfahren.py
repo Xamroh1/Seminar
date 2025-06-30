@@ -117,11 +117,12 @@ def Tourbewertung_inkl_laden(max_b, Distanzen_K_L, Tour_Distanzen, Tour_Kundenin
     i = 0
     while i < len(Tour_Kundenindex):
         
-        aktueller_Kundenindex = Tour_Kundenindex[i] #Zugriff auf matrizen durch Index
+        aktueller_Kundenindex = Tour_Kundenindex[i] #Zugriff auf Kundenindex liste um auf matrizen zuzugreifen
         
-        if i == len(Tour_Kundenindex) -1: #Kundenreihenfolge der Tour, um auf Distanzmatrixzeilen zuzugreifen
+        if i == len(Tour_Kundenindex) -1: #check nach letzter fahrt / rückfahrt
             distanz = Decimal(str(Tour_Distanzen[i]))
-            tour_dauer += distanz
+            beste_nächste_Ladestation = Decimal("0")
+            # tour_dauer += distanz
         else:
             nächster_Kundenindex = Tour_Kundenindex[i+1] #zugriff auf nächsten kunden
             distanz = Decimal(str(Tour_Distanzen[i]))
@@ -129,8 +130,8 @@ def Tourbewertung_inkl_laden(max_b, Distanzen_K_L, Tour_Distanzen, Tour_Kundenin
 
 
         if SoC > distanz + beste_nächste_Ladestation: #Reicht SoC für nächsten Kunden und die beste Ladestation danach    
-            tour_dauer += Decimal(str(Tour_Distanzen[i]))
-            SoC -= Decimal(str(Tour_Distanzen[i]))
+            tour_dauer += distanz
+            SoC -= distanz
             i += 1
 
         else: #wenn nicht dann laden
@@ -224,7 +225,7 @@ for a in range(A):
 
     for k in K:
 
-        k_rand = k-1
+        k_rand = k-1 #randint inkludiert randwerte 
 
         for t in range(T):
 
